@@ -35,10 +35,13 @@ Usually this means furigana, but works fine with western characters too.
 - `%R` Align to right.
 - `%C` Align to center.
 - `%r` Reset all styling.
-- `%NUM` Font size change, where `NUM` is a percentage compared to default. Use 3 numbers, pad with zeroes.
-- `%fNAME;` Font face change, where `NAME` is a preregistered or system font. Use `%fuser;` to reset back to user-selected/default font.
+- `%NUM` Font size change, where `NUM` is a percentage compared to default.  
+Use 3 numbers, pad with zeroes. `%100` is default.
+- `%fNAME;` Font face change, where `NAME` is a preregistered custom or allowed system font name.  
+Use `%fuser;` to reset back to user-selected/default font.
 - `#XXXXXX;` Font color change where `XXXXXX` is a hexadecimal RGB color value.
-- `%pNUM;` Text pitch change, a.k.a. letter spacing. `NUM` is integer in relative font points.  For example, `%p-1;` = one unit less than default, `%p10;` = ten units more than default. Use `%p;` to reset.
+- `%pNUM;` Text pitch change, a.k.a. letter spacing. `NUM` is integer in relative font points.  
+For example, `%p-1;` = one unit less than default, `%p10;` = ten units more than default. Use `%p;` to reset.
 
 ## Timing
 - `%dNUM;` Change text display speed (wait time), where `NUM` is a percentage of the default. Lower = faster.
