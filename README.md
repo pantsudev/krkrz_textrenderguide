@@ -10,11 +10,12 @@ This is a rough guide to special command usage in KiriKiriZ TextRender(.dll) bas
 ## Functional
 - `\n` Linebreak
 - `\t` Tabstop character
-- `\i` Indentation, from next line
-- `\r` Unindentation, from next line
+- `\i` Indent the following lines to current horizontal position
+- `\r` Reset indenting for following lines
 - `\w` Advance display position by one blank character
 - `\k` Wait for key input
 - `\x` Null ???
+- `\\`
 
 ## Rubies/Furigana
 Rubies are small annotations that are rendered above, below or next to base text, in this case above.  
@@ -27,8 +28,11 @@ Usually this means furigana, but works fine with western characters too.
 - `%b0` Bold off.
 - `%i1` Italics on.
 - `%i0` Italics off.
+- `%n` Bold and italics off.
 - `%s1` Shadow on.
 - `%s0` Shadow off.
+- `%e1` Edge on.
+- `%e0` Edge off.
 - `%B` Large text.
 - `%S` Small text.
 - `%L` Align to left.
