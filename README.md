@@ -2,20 +2,26 @@
 
 This is a rough guide to special command usage in KiriKiriZ TextRender(.dll) based visual novel dialogue.
 
+This syntax is very common in different VN systems built on top of krkrz, apart from direct KAG script,
+and is typically impleted via one of the following:
+- By `textrender.dll`, a binary plugin
+- By `textrender.tjs`, a pure TJS version of the parser
+- By `texttagconverter.tjs`, a TJS parser that turns this syntax into KAG tags for the KAG[EX] engine.  
+This is in particular typical for novels that use the `SCN` binary scene format.
+
 ## Notes
-- The font face is assumed to stay the same per a single draw call. Results are not guaranteed if it changes midway through. I think.
 - Bold and italics can only work if the selected font face has them. If not, text will be rendered normally.
-- Lines cannot start with a wait command (`%wXXX;`), it will cause a script exception.
+- Lines cannot start with a character wait command (`%wXXX;`), it will cause a script exception in some cases.
 
 ## Functional
 - `\n` Linebreak
 - `\t` Tabstop character
 - `\i` Indent the following lines to current horizontal position
 - `\r` Reset indenting for following lines
-- `\w` Advance display position by one blank character
-- `\k` Wait for key input
-- `\x` Null ???
-- `\\`
+- `\w` Advance display position by one blank character (not supported in all cases)
+- `\k` Wait for click/key input
+- `\x` Null ? (not supported in all cases)
+- `\` When followed by some other control character, escapes that character.
 
 ## Rubies/Furigana
 Rubies are small annotations that are rendered above, below or next to base text, in this case above.  
@@ -39,23 +45,24 @@ Usually this means furigana, but works fine with western characters too.
 - `%R` Align to right.
 - `%C` Align to center.
 - `%r` Reset all styling.
-- `%NUM` Font size change, where `NUM` is a percentage compared to default.  
-Use 3 numbers, pad with zeroes. `%100` is default.
+- `%NUM;` Font size change, where `NUM` is a percentage compared to default. `%100;` is default.
 - `%fNAME;` Font face change, where `NAME` is a preregistered custom or allowed system font name.  
 Use `%fuser;` to reset back to user-selected/default font.
-- `#XXXXXX;` Font color change where `XXXXXX` is a hexadecimal RGB color value.
+- `#XXXXXX;` Font color change where `XXXXXX` is a hexadecimal RGB color value. Use `#;` to reset.
 - `%pNUM;` Text pitch change, a.k.a. letter spacing. `NUM` is integer in relative font points.  
 For example, `%p-1;` = one unit less than default, `%p10;` = ten units more than default. Use `%p;` to reset.
 
 ## Timing
 - `%dNUM;` Change text display speed (wait time), where `NUM` is a percentage of the default. Lower = faster.
-- `%wNUM;` Wait for `NUM` count character display times. Use 3 numbers, pad with zeroes.
+- `%aNUM;` Change text display speed (wait time), where `NUM` is an absolute value (in ms?)
+- `%wNUM;` Wait for `NUM` count character display times.
+- `%tNUM;` Wait for `NUM` milliseconds.
 - `%DNUM;` Time synchronization (???) for `NUM` milliseconds
 - `%D$XXX;` Time synchronization (???) where `XXX` is a label name
 
 ## Special
 - `$XXX;` Print a variable, where `XXX` is processed by `onEval()`.
-- `&XXX;` Print a graphic, where `XXX` is the name of a predefined image ???
+- `&XXX;` Print a graphic, where `XXX` is the name of a an image.
 
 ### Disclaimer
 Reversed and cobbled together from multiple sources.  
